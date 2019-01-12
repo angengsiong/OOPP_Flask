@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<p>Subscribe to get our latest information!</p>
+<form method="POST" action="/news">
+        {{ form.csrf_token }}
+        {{ form.mail.label }} {{ form.mail(size=80, placeholder="username@example.com") }}
+    <input type="submit" value="Subscribe">
+</form>
+<style>
+    p{
+        text-align: center;
+        margin-top:150px;
+        margin-bottom: 90px;
+        font-size: 80px
+    }
+    form{
+        font-size: 40px;
+        margin: 0 auto;
+        text-align: center
+    }
+    input[type=submit]{background-color: rgb(76, 148, 230);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 100px;
+  cursor: pointer;}
+</style>
+{% endblock %}

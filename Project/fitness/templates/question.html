@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<link rel="shortcut icon" href="dist/favicon.ico">
+<div style="font-size: 25px;margin-top: 200px;margin-left: 400px;">
+<form id='diet' style="margin:40px">
+<label>What is/are your dietary restriction(s)</label>
+      <input type="checkbox" data-toggle="checkbox" value="1">Pork
+      <input type="checkbox" data-toggle="checkbox" value="2">Chicken
+      <input type="checkbox" data-toggle="checkbox" value="3">Beef
+      <input type="checkbox" data-toggle="checkbox" value="4">Fish
+      <input type="checkbox" data-toggle="checkbox" value="5">Egg & Dairy Product
+</form>
+<form id='exercise' style="margin:40px">
+  <label>Are you able to have strenuous exercise?</label>
+  <input type="radio" data-toggle="radio">YES
+  <input type="radio" data-toggle="radio">NO
+</form>
+<form id="lose" style="margin:40px">
+  <label>How much weight you plan to lose each week?</label>
+  <input type="number" placeholder="KG">
+</form>
+</div>
+{% endblock %}

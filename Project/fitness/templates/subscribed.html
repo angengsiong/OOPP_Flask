@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+                    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+                    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+                    <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+                    <script src="dist/scripts/flat-ui.js"></script>
+                    <script src="docs/assets/js/application.js"></script>
+    <body>
+        <p style="text-align:center;margin:140px;font-size: 40px">You have successful submitted the questionnaire! Back to the Main page in <span id="second">5</span> seconds!</p>
+        <a href='/' style="text-align:center;margin-top:100px;font-size: 30px;text-decoration: none;color: black;margin-left: 800px">Back Immediately</a>
+    </body>
+    <script>
+
+    var time = 5;
+    var downloadTimer = setInterval(function(){
+    time--;
+    document.getElementById("second").textContent = time;
+    if(time <= 0)
+    window.location.href="/"
+    },1000);
+
+
+</script>
+{% endblock %}
