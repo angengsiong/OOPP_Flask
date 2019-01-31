@@ -1,0 +1,209 @@
+{% extends "layout.html" %}
+{% block content %}
+    {{ super() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <div style="margin:0 auto;text-align:center">
+    <button onclick="change1()" class="button">Show BMI</button>
+    <button onclick="change2()" class="button">Show Weight</button>
+    <button onclick="change3()" class="button">Show Sleeping Hours</button>
+    </div>
+    <div style="margin:0 auto; text-align:center" id='C1'>
+        <canvas id="myChart1" width="1400" height="800" style="margin-left:250px"></canvas>
+        </div>
+    <div style="margin:0 auto; text-align:center;display: none" id='C2'>
+        <canvas id="myChart2" width="1400" height="800" style="margin-left:250px"></canvas>
+    </div>
+    <div style="margin:0 auto; text-align:center;display: none" id='C3'>
+        <canvas id="myChart3" width="1400" height="800" style="margin-left:250px"></canvas>
+    </div>
+    <script>
+        function change1(){
+            document.getElementById("C1").style.display="block"
+            document.getElementById("C2").style.display="none"
+            document.getElementById("C3").style.display="none"
+        }
+        function change2(){
+            document.getElementById("C1").style.display="none"
+            document.getElementById("C2").style.display="block"
+            document.getElementById("C3").style.display="none"
+        }
+        function change3(){
+            document.getElementById("C1").style.display="none"
+            document.getElementById("C2").style.display="none"
+            document.getElementById("C3").style.display="block"
+        }
+        var config1 = {
+            type: 'line',
+
+            data: {
+                labels: {{ labels|safe }},
+                datasets: [
+                    {
+                        label: "BMI",
+                        backgroundColor:"rgba(192,192,75,0.4)",
+                        borderColor:"rgba(192,192,75, 1)",
+                        data: {{ bmi }}
+                    }
+                ],
+            },
+            options: {
+                responsive: false,
+                title: {
+                    display: true,
+                    text: 'Charts'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+
+        };
+        var config3 = {
+            type: 'line',
+
+            data: {
+                labels: {{ labels|safe }},
+                datasets: [
+                    {
+                        label: "Sleep",
+                        backgroundColor:"rgba(140,100,75,0.4)",
+                        borderColor:"rgba(140,100,75, 1)",
+                        data: {{ sleep }}
+                    }
+                ],
+            },
+            options: {
+                responsive: false,
+                title: {
+                    display: true,
+                    text: 'Charts'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+
+        };
+        var config2 = {
+            type: 'line',
+
+            data: {
+                labels: {{ labels|safe }},
+                datasets: [
+                    {
+                        label: "Weight",
+                        data: {{ weight }},
+                        backgroundColor:"rgba(75,192,192,0.4)",
+                        borderColor:"rgba(75,192,192, 1)",
+                    }
+                ],
+            },
+            options: {
+                responsive: false,
+                title: {
+                    display: true,
+                    text: 'Charts'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+
+        };
+        window.onload = function() {
+        var ctx1 = document.getElementById("myChart1").getContext("2d");
+        window.myChart1 = new Chart(ctx1, config1);
+        var ctx2 = document.getElementById("myChart2").getContext("2d");
+        window.myChart2 = new Chart(ctx2, config2);
+        var ctx3 = document.getElementById("myChart3").getContext("2d");
+        window.myChart3 = new Chart(ctx3, config3);
+    }
+    </script>
+    <style>
+    .button {
+  border: none;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+.button:hover {background-color: #e7e7e7;}</style>
+
+    {% if warning %}
+        <div class="alert alert-info" role="alert" style="width: 600px; text-align:center;margin: 0 auto">
+            <h3>Your weight increases too much</h3>
+        </div>
+    {% endif %}
+
+{% endblock %}

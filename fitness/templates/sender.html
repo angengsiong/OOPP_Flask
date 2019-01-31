@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<p>Send the newsletter</p>
+<form action="/sender" method="POST">
+    <div style="width:100%;text-align: center">
+    <textarea type="text" placeholder="Type your newsletter here" name="body" style="height: 400px;width: 1200px;margin: 20px;vertical-align: middle"></textarea></div>
+    <div style="width:100%;text-align: center">
+    <input type="submit" value="Subscribe"></div>
+</form>
+
+<style>
+    p{
+        text-align: center;
+        margin-top:130px;
+        margin-bottom: 20px;
+        font-size: 70px;
+        border-radius: 15px;
+    }
+    input[type=submit]{background-color: rgb(76, 148, 230);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 30px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  }
+</style>
+
+{% endblock %}

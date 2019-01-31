@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+<p style="font-size:65px">Subscribe to get our latest information!</p>
+{% for message in get_flashed_messages() %}
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+    {% endfor %}
+<form action="/news" method="POST">
+    <p style="font-size:50px;display:inline">Email Address </p>
+    {{ form.csrf_token }}
+    {{ form.mail(size=100,placeholder="example@mail.com") }}
+    <input type="submit" value="Subscribe">
+</form>
+
+<style>
+    p{
+        text-align: center;
+        margin-top:130px;
+        margin-bottom: 90px;
+        font-size: 80px
+    }
+    form{
+        font-size: 40px;
+        margin: 0 auto;
+        text-align: center
+    }
+    input[type=submit]{background-color: rgb(76, 148, 230);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 100px;
+  cursor: pointer;}
+</style>
+{% endblock %}
